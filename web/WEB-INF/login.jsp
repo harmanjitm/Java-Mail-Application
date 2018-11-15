@@ -14,9 +14,10 @@
     <body>
         <h1>Login Page</h1>
         <form method="post" action="login">
-            username: <input type="text" required name="username"><br>
-            password: <input type="password" required name="password"><br>
-            <input type="submit" value="Submit">
+            Username: <input type="text" required name="username"><br>
+            Password: <input type="password" required name="password"><br>
+            <input type="submit" value="Login">
         </form>
+        <a href="forgot">Forgot Password?</a>
     </body>
 </html>

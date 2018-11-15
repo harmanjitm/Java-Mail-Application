@@ -39,7 +39,7 @@ public class AccountService {
                 tags.put("firstname", user.getFirstname());
                 tags.put("date", ((new java.util.Date())).toString());
                 
-                GmailService.sendMail(email, subject, template, tags);
+                GmailService.sendMail(email, subject, template, tags, "%", "%");
                 
                 return user;
             }
@@ -48,5 +48,25 @@ public class AccountService {
         }
 
         return null;
+    }
+
+    public boolean forgotPassword(String email, String path) {
+        UserService us = new UserService();
+        User user = us.getByEmail(email);
+        if(user != null)
+        {
+            String subject = "Password Reset";
+            String template = path + "/emailtemplates/forgot.html";
+            
+            HashMap<String, String> tags = new HashMap<>();
+            tags.put("firstname", user.getFirstname());
+            tags.put("lastname", user.getLastname());
+            tags.put("username", user.getUsername());
+            tags.put("password", user.getPassword());
+            
+            GmailService.sendMail(email, subject, template, tags, "{{", "}}");
+            return true;
+        }
+        return false;
     }
 }

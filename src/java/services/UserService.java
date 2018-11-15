@@ -45,4 +45,10 @@ public class UserService {
         user.setEmail(email);
         return userDB.insert(user);
     }
+    
+    public User getByEmail(String email)
+    {
+        UserDB userDB = new UserDB();
+        return userDB.getUserByEmail(email);
+    }
 }

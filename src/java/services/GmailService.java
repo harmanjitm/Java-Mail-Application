@@ -22,7 +22,7 @@ import javax.naming.NamingException;
 public class GmailService {
     
     public static void sendMail(String email, String subject,
-            String template, HashMap<String, String> tags) {
+            String template, HashMap<String, String> tags, String replaceBegin, String replaceEnd) {
         try {
             // read in template in to a string
             BufferedReader br = new BufferedReader(new FileReader(new File(template)));
@@ -35,7 +35,7 @@ public class GmailService {
             
             // replace all heart tags with values
             for(String tag : tags.keySet()) {
-                body = body.replace("%" + tag + "%", tags.get(tag));
+                body = body.replace(replaceBegin + tag + replaceEnd, tags.get(tag));
             }
             
             // send email
